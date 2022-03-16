@@ -1,0 +1,80 @@
+fun getOperator(): String {
+    println("What operations would you like to perform?")
+    val operator = readLine().toString()
+    when {
+        operator == "/" -> {
+            getFirstNumber()
+            return operator
+        }
+        operator == "*" -> {
+            getFirstNumber()
+            return operator
+        }
+        operator == "-" -> {
+            getFirstNumber()
+            return operator
+        }
+        operator == "+" -> {
+            getFirstNumber()
+            return operator
+        }
+        else -> while (
+            operator != "/" &&
+            operator != "*" &&
+            operator != "-" &&
+            operator != "+"
+        ) {
+            println("That is not a valid operation")
+            getOperator()
+        }
+    }
+    return operator
+}
+
+fun getFirstNumber(): Double {
+    println("Please enter the first number")
+    val firstNumber = readLine()?.toDoubleOrNull()
+    when {
+        firstNumber is Double -> {
+            getSecondNumber()
+            return firstNumber
+        }
+        firstNumber == null -> {
+            println("This is not a number")
+            getFirstNumber()
+        }
+    }
+    return firstNumber!!.toDouble()
+}
+
+fun getSecondNumber(): Double {
+    println("Please enter the second number")
+    val secondNumber = readLine()?.toDoubleOrNull()
+    when {
+        secondNumber is Double -> {
+            calculation()
+            return secondNumber
+        }
+        secondNumber == null -> {
+            println("This is not a number")
+            getSecondNumber()
+        }
+    }
+    return secondNumber!!.toDouble()
+}
+
+fun calculation() {
+    val operator: String = getOperator()
+    val firstNumber: Double = getFirstNumber()
+    val secondNumber: Double = getSecondNumber()
+    when {
+        operator == "/" -> return println("The result is: ${firstNumber / secondNumber}")
+        operator == "*" -> return println("The result is: ${firstNumber * secondNumber}")
+        operator == "-" -> return println("The result is: ${firstNumber - secondNumber}")
+        operator == "+" -> return println("The result is: ${firstNumber + secondNumber}")
+    }
+}
+
+fun main() {
+    getOperator()
+}
